@@ -6,14 +6,13 @@ if (!defined('BASEPATH'))
 class Login extends CI_Controller {
 
      // Facebook OAuth Crediential
-        private $appId = "2359875784248843";
-        private $secret = "432e1d55af7320dcdef6ca308dadb669";
+        private $appId = "app_id_facebook";
+        private $secret = "Secrets_id_facebook";
 
      // Google OAuth Crediential
-        private $client_id = '791682562559-31fu80ugk4a22gh7pmsj2pibi51o2l7l.apps.googleusercontent.com';
-        private $client_secret = '84RGN4jX88dghxoEMCXuCxCe';
-        private $redirect_uri = 'http://localhost:8012/ci_loginapp_fb_google/login/google_login';
-        private $simple_api_key = 'AIzaSyBVsFekXxArH6jLhnfwo9Ptjq-nwm6hvlQ';
+        private $client_id = 'client_id_google';
+        private $client_secret = 'client_secret_google';
+        private $simple_api_key = 'api_key_google';
 
     function __construct() {
         parent::__construct();
@@ -164,7 +163,7 @@ class Login extends CI_Controller {
         // Store values in variables from project created in Google Developer Console
         $client_id = $this->client_id;
         $client_secret = $this->client_secret;
-        $redirect_uri = $this->redirect_uri;
+        $redirect_uri = base_url('login/google_login');
         $simple_api_key = $this->simple_api_key;
 
         // Create Client Request to access Google API
