@@ -5,14 +5,17 @@ if (!defined('BASEPATH'))
 
 class Login extends CI_Controller {
 
-     // Facebook OAuth Crediential
-        private $appId = "app_id_facebook";
-        private $secret = "Secrets_id_facebook";
+     // Facebook OAuth Crediential appid:572510826580690 secret:206b18278c0245dc86ec922a3995c05f
+        private $appId = "your_appid";
+        private $secret = "your_secret";
 
      // Google OAuth Crediential
-        private $client_id = 'client_id_google';
-        private $client_secret = 'client_secret_google';
-        private $simple_api_key = 'api_key_google';
+     //clientid:791682562559-n50gtt817d24bkp0ov35a71q4aq02q58.apps.googleusercontent.com
+     //clientsecret:8O2Q6sFPhxVAKRQ9QHyiES89
+     //apikey:AIzaSyBVsFekXxArH6jLhnfwo9Ptjq-nwm6hvlQ
+        private $client_id = 'your_client_id';
+        private $client_secret = 'your_client_secret';
+        private $simple_api_key = 'your_api_key';
 
     function __construct() {
         parent::__construct();
@@ -52,10 +55,13 @@ class Login extends CI_Controller {
         if(isset($data['fb_login_url'])){
           header('Location:' .$data['fb_login_url']);
         }
+
         if (isset($data['user_email'])) {
             $user_fb_data = array(
                 'user_picture' => $data['user_picture'],
-                'user_name' => $data['user_name'],
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'user_name' => $data['first_name'],
                 'user_email' => $data['user_email'],
                 'logout_url' => $data['logout_url']
             );
@@ -67,9 +73,13 @@ class Login extends CI_Controller {
             //if not exists then save on db
             if ($check_email != $user_fb_data['user_email']) {
                 $insert_fb_data = array(
-                    'user_name' => $user_fb_data['user_name'],
-                   'user_email' => $user_fb_data['user_email'],
-                     'is_active' => 1
+                      'first_name' => $user_fb_data['first_name'],
+                      'last_name' => $user_fb_data['last_name'],
+                      'user_name' => $user_fb_data['last_name'],
+                      'full_name' => $user_fb_data['first_name'].' '.$user_fb_data['last_name'],
+                      'picture' => $user_fb_data['user_picture'],
+                      'user_email' => $user_fb_data['user_email'],
+                      'is_active' => 1
                     );
                 // Sucess New User Registration
                 $new_user = $this->loginapp_model->new_user_registration($insert_fb_data);
@@ -92,12 +102,17 @@ class Login extends CI_Controller {
         //get google oauth userdata
         if (isset($data['userData'])) {
 
-            $user_name = $data['userData']->given_name . " " . $data['userData']->family_name;
+            $full_name = $data['userData']->name;
+            $first_name = $data['userData']->given_name;
+            $last_name = $data['userData']->family_name;
             $user_email = $data['userData']->email;
             $user_picture = $data['userData']->picture;
             $user_google_data = array(
                 'user_picture' => $user_picture,
-                'user_name' => $user_name,
+                'user_name' => $first_name,
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'full_name' => $full_name,
                 'user_email' => $user_email
             );
 
@@ -109,9 +124,13 @@ class Login extends CI_Controller {
             if ($check_email != $user_google_data['user_email']) {
 
                 $insert_google_data = array(
-                    'user_name' => $user_name,
+                    'user_name' => $last_name,
                     'user_email' => $user_email,
-                     'is_active' => 1
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
+                    'full_name' => $full_name,
+                    'picture' => $user_picture,
+                    'is_active' => 1
 
                 );
                 // Sucess New User Registration
@@ -140,7 +159,8 @@ class Login extends CI_Controller {
         if ($facebook_user) {
             $user_profile = $this->facebook->api('/me?fields=id,first_name,last_name,email,gender,locale,picture');
             $data['user_email'] = $user_profile['email'];
-            $data['user_name'] = $user_profile['first_name'];
+            $data['first_name'] = $user_profile['first_name'];
+            $data['last_name'] = $user_profile['last_name'];
             $data['user_picture'] = "https://graph.facebook.com/" . $user_profile['id'] . "/picture";
             $data['logout_url'] = $this->facebook->getLogoutUrl(array('next' => base_url() . 'login/logout'));
         } else {
