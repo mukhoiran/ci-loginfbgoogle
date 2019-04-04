@@ -1,0 +1,95 @@
+body {
+  //background: #dddddd url("http://www.formget.com/app/new-app/css/../images/repeat-bg.png") fixed repeat;
+  background-color: #46BEF0;
+  font-family: "proxima_nova_rgregular", sans-serif;
+  font-size: 16px;
+  line-height: 28px; }
+
+#auth_wraper {
+  margin-top: 75px; }
+  #auth_wraper .fg-spinner {
+    display: none;
+    width: auto;
+    background: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -29px;
+    margin-top: -16px; }
+    #auth_wraper .fg-spinner div {
+      background: #327eda; }
+
+#auth_container {
+  position: relative;
+  width: 375px;
+  padding: 25px;
+  margin-top: 20px;
+  border-bottom: 2px solid #ccc; }
+  #auth_container h2.signup_heading {
+    margin-top: 0;
+    font-family: "proxima_novasemibold", sans-serif;
+    font-size: 19px;
+    color: #333;
+    padding-bottom: 12px;
+    line-height: normal; }
+  #auth_container #social_login {
+    margin-top: 18px;
+    padding-bottom: 23px; }
+    #auth_container #social_login .fb_login, #auth_container #social_login .gg_login {
+      font-weight: normal;
+      font-family: "proxima_nova_rgregular", sans-serif;
+      line-height: 1;
+      text-align: center;
+      text-decoration: none !important;
+      -webkit-font-smoothing: subpixel-antialiased;
+      cursor: pointer;
+      text-align: center;
+      border: 0;
+      border-radius: 5px;
+      font-size: 16px;
+      padding: 12px 0 12px;
+	  color: #fff;
+	  display: inline-block;
+	  width: 160px; }
+    #auth_container #social_login .fb_login {
+      background: #385995;
+      background: rgba(59, 89, 152, 0.9);
+      margin-bottom: 6px; }
+    #auth_container #social_login .fb_login:hover{
+      background: rgba(59, 89, 152, 1); }
+    #auth_container #social_login .gg_login {
+      background: #d13e29;
+      background: rgba(209, 62, 41, 0.9); }
+    #auth_container #social_login .gg_login:hover {
+      background: rgba(209, 62, 41, 1); }
+  #auth_container .login_or {
+    background: url("../images/or.png") center top no-repeat;
+    height: 9px;
+    margin-bottom: 15px; }
+  #auth_container ul {
+    padding: 0; }
+    #auth_container ul li {
+      margin-bottom: 8px; }
+  #auth_container .text, #auth_container .password {
+    padding: 13px 5px 11px 10px; }
+  #auth_container .submit {
+    margin-top: 6px; }
+  #auth_container .forgot-password, #auth_container .signup-btn {
+    text-decoration: none;
+    margin-top: 20px;
+    font-size: 16px; }
+  #auth_container .forgot-password {
+    margin-top: 22px;
+    color: #999;
+    text-transform: none;
+    float: left; }
+  #auth_container .signup-btn {
+    float: right;
+    font-family: "proxima_novasemibold", sans-serif;
+    padding: 3px 15px;
+    border-radius: 5px;
+    background: #f2f2f2;
+    color: #999;
+    cursor: pointer; }
+    #auth_container .signup-btn:hover {
+      background: #eee; }
