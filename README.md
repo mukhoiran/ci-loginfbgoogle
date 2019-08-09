@@ -1,2 +1,2 @@
 # ci-loginfbgoogle
-Documentation Codeigniter Login using FB and Google
+Login FB and Google with CodeIgniter
